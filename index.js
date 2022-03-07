@@ -1,14 +1,13 @@
-const http = require('http');
+// Setup basic express server
+const express = require('express');
+const app = express();
+const path = require('path');
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+const port = process.env.PORT || 4000;
 
-const hostname = '127.0.0.1';
-const port = 3000;
-
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World');
+app.get('/data', function(req, res) {
+    console.log("test");
 });
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.listen(4000);
